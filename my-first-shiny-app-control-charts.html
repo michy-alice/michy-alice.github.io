@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Michy's website</title>
+	<meta name="description" content="">
+	<meta name="author" content="Michy Alice">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link href="/theme/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/local.css" rel="stylesheet">
+	<link href="/theme/pygments.css" rel="stylesheet">
+
+	<!-- Feeds -->
+
+
+
+
+<script>var _gaq=[['_setAccount','UA-67731319-2'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</head>
+<body>
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="/">Michy's website</a>
+			<ul class="nav">
+					<li><a href="/pages/about-me.html">About me</a></li>
+					<li><a href="/pages/projects.html">Projects</a></li>
+					<li><a href="/pages/areas-of-expertise.html">Expertise</a></li>
+					<li><a href="/pages/contacts.html">Contacts</a></li>
+					<li><a href="/pages/suggested-readings.html">Suggested readings</a></li>
+					<li class="active"><a href="/category/posts.html">Posts</a></li>
+			</ul>
+			<p class="pull-right"><a href="/archives.html">[archives]</a> <a href="/tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+			<h3>Blogroll</h3>
+			<ul>
+				<li><a href="http://firsttimeprogrammer.blogspot.com/">The Beginner Programmer</a></li>
+				<li><a href="http://datascienceplus.com/author/mic/">Datascience+</a></li>
+				<li><a href="http://www.r-bloggers.com/author/michy-alice/">R-Bloggers</a></li>
+				<li><a href="http://www.milanor.net/blog/">MilanoR</a></li>
+			</ul>
+			<div class="social">
+			<h3>Social</h3>
+			<ul>
+				<li><a href="http://twitter.com/mich9222">Twitter</a></li>
+				<li><a href="http://github.com/mick001">Github</a></li>
+				<li><a href="https://it.linkedin.com/in/michy-alice-3a5061a2">Linkedin</a></li>
+				<li><a href="http://https://www.youtube.com/channel/UCMPULuD3KqiyH8Ysoj-1Hdg">Youtube</a></li>
+			</ul>
+			</div>
+		</div>
+	  </div>
+	  <div class="content">
+	<div class='article'>
+		<div class="page-header"><h1>My first Shiny app: control charts</h1></div>
+		<div class="well small">Permalink: <a class="more" href="/my-first-shiny-app-control-charts.html">2016-09-24 08:00:00+01:00</a>
+by <a class="url fn" href="/author/michy-alice.html">Michy Alice </a>
+ in <a href="/category/posts.html">Posts</a>
+tags: <a href="/tag/r.html">R</a> <a href="/tag/shiny.html">Shiny</a> </div>
+		<div><h3>Example of post</h3>
+<p>After having carefully followed the online <a href="http://shiny.rstudio.com/tutorial/">official Shiny tutorial</a>, I decided to make a quick try at making my very first Shiny App. I should say that I found myself very well with the explanation given and Shiny was definitely one of the libraries that took the less time for me to start using it. Of course I’m still not a master of Shiny by no means, but I feel more confident on how to use it and on what can be done with it.</p>
+<p><img alt="Control charts plot" src="/images/chart.jpg" /></p>
+<p>I’m working on an R project related to <strong>control</strong> charts and I was hinted to get to know Shiny, since it is very likely that the project will involve an interactive interface and Shiny fits the bill perfectly for this assignment. For this reason I took an afternoon for getting familiar with Shiny and build this App. Enough talk, let’s get to the App.</p>
+<h2>App description</h2>
+<p>The App is designed with one objective only: let me learn <strong>Shiny</strong> :D. I think this is quite obvious to the expert developer, however, the main idea is to allow the user to upload a .csv file of ungrouped observations, select the control chart to plot, group size, variable to plot, and then display the control chart and the results of the calculation as a data table.</p>
+<h2>Input data structure</h2>
+<p>The input file must be a .csv. So far I have not allowed other formats. The .csv can contain as many variables as you like, there is no limit, but bear in mind that Shiny (the free version at least) limits the size of files that can be uploaded to 5 MB. The file should have no row names, however, in case row names are present, do not reserve a free spot (“ ”) in the columns name row at the beginning of the file and everything should work fine. The data should be a series of consecutive measurements at a given constant frequency. For instance, if you took 2 measures of a certain variable y each day for 3 days, your data should be in the following format:</p>
+<div class="highlight"><pre>day_id,y_measurement
+1,1000
+1,1001
+2,1002
+2, 1003
+3,1004
+3,1005
+</pre></div>
+
+
+<p>Of course, the <em>day_id</em> variable is not necessary. In this case the group size would be 2. For more information and an example of the allowed .csv format please check the <a href="https://github.com/mick001/control_charts_shiny/blob/master/README.md">readme</a>.</p>
+<h2>Available charts</h2>
+<p>Only charts for quantitative variables are available. So far, the <strong>xbar-s</strong> and <strong>s</strong> charts are the only two supported. You can choose how many σ you would like your control limits to be wide, 3 is the default but you can choose a higher or lower margin. The parameters of the control chart are showed in a table below the graph for further inspection.</p>
+<h2>Where to find the App</h2>
+<p>The App is available <a href="https://michy-apps.shinyapps.io/control_charts/">here</a>. By default, the mtcars dataset is used, although it is not the exact fit it is needed just for show until you upload your data.</p>
+<p>The application seems to run smoothly and overall I’m quite happy with how it turned out. This was just a test application for myself, so I did not take that much care of the graphical side of the application. Any comment is welcomed, thank you.</p></div>
+	</div>
+		<footer>
+		  <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme based on <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
+		  <p>&copy; Michy Alice</p>
+		</footer>
+	  </div>
+
+	</div>
+</body>
+</html>
