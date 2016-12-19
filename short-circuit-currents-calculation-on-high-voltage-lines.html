@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<title>Michy's website</title>
+	<meta name="description" content="">
+	<meta name="author" content="Michy Alice">
+
+	<!-- HTML5 shim, for IE6-8 support of HTML elements -->
+	<!--[if lt IE 9]>
+		<script src="/theme/html5.js"></script>
+	<![endif]-->
+
+	<!-- Styles -->
+	<link href="/theme/bootstrap.min.css" rel="stylesheet">
+	<link href="/theme/local.css" rel="stylesheet">
+	<link href="/theme/pygments.css" rel="stylesheet">
+
+	<!-- Feeds -->
+
+
+
+
+<script>var _gaq=[['_setAccount','UA-67731319-2'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
+</head>
+<body>
+	<div class="topbar">
+	  <div class="topbar-inner">
+		<div class="container-fluid">
+		  <a class="brand" href="/">Michy's website</a>
+			<ul class="nav">
+					<li><a href="/pages/about-me.html">About me</a></li>
+					<li><a href="/pages/projects.html">Projects</a></li>
+					<li><a href="/pages/areas-of-expertise.html">Expertise</a></li>
+					<li><a href="/pages/contacts.html">Contacts</a></li>
+					<li><a href="/pages/resources.html">Resources</a></li>
+					<li class="active"><a href="/category/posts.html">Posts</a></li>
+			</ul>
+			<p class="pull-right"><a href="/archives.html">[archives]</a> <a href="/tags.html">[tags]</a></p>
+		</div>
+	  </div>
+	</div>
+
+	<div class="container-fluid">
+	  <div class="sidebar">
+		<div class="well">
+			<h3>Blogroll</h3>
+			<ul>
+				<li><a href="http://firsttimeprogrammer.blogspot.com/">The Beginner Programmer</a></li>
+				<li><a href="http://datascienceplus.com/author/mic/">Datascience+</a></li>
+				<li><a href="http://www.r-bloggers.com/author/michy-alice/">R-Bloggers</a></li>
+				<li><a href="http://www.milanor.net/blog/">MilanoR</a></li>
+			</ul>
+			<div class="social">
+			<h3>Social</h3>
+			<ul>
+				<li><a href="http://twitter.com/mich9222">Twitter</a></li>
+				<li><a href="http://github.com/mick001">Github</a></li>
+				<li><a href="https://it.linkedin.com/in/michy-alice-3a5061a2">Linkedin</a></li>
+				<li><a href="http://https://www.youtube.com/channel/UCMPULuD3KqiyH8Ysoj-1Hdg">Youtube</a></li>
+			</ul>
+			</div>
+		</div>
+	  </div>
+	  <div class="content">
+	<div class='article'>
+		<div class="page-header"><h1>Short circuit currents calculation on high voltage lines</h1></div>
+		<div class="well small">Permalink: <a class="more" href="/short-circuit-currents-calculation-on-high-voltage-lines.html">2016-12-10 08:00:00+00:00</a>
+by <a class="url fn" href="/author/michy-alice.html">Michy Alice </a>
+ in <a href="/category/posts.html">Posts</a>
+tags: <a href="/tag/electrical-engineering.html">Electrical Engineering</a> <a href="/tag/python.html">Python</a> </div>
+		<div><p>Short circuits are one of the most common failures that can happen when dealing with electrical circuits. </p>
+<p><img alt="High voltage" src="/images/high_voltage.png" /></p>
+<p>Short circuits can be accidental, think of a tree branch leaning onto a high voltage powerline or due to the breakdown of the isolating material (this is often the case as it gets older and loses its isolating property). Whatever the cause, short circuits are, for sure, an enemy of your electrical systems mainly because the following effects:</p>
+<p>1) Much higher heat conversion due to the Joule effect in the power lines. If this effect lasts long enough, it can severely shorten the lifespan of the electrical cables.
+2) Higher electrodynamic forces (roughly, proportional to the peak of the current squared).</p>
+<p>Due to the potential damage, a lot of protections are in place, especially in high voltage power lines where the problem is much more critical than, for instance, in a low voltage system.</p>
+<p>In this article I am going to share a simple program I wrote to calculate the short circuit current of a 132 kV three phase power line. The simulation starts from the following assumptions:</p>
+<p>1) The line is not under load and no current is actually flowing through it.
+2) The line capacitance can be neglected and the whole system can be modelled as a RL circuit.
+3) Even under a short circuit, the system is balanced and symmetrical (this is not true usually).</p>
+<p>Under these simple assumptions, the power line’s concentrated parameter circuit (single phase equivalent) becomes the following:</p>
+<p><img alt="RL circuit" src="/images/RL_circuit.png" /></p>
+<p>The short circuit current can be divided in two parts as follows:</p>
+<p>icc=VmZsin(ωt+α−ϕ)−VmZe(−tτ)sin(α−ϕ)</p>
+<p>Where Vm is the peak voltage, α is the phase of the voltage at the time the short circuit happened, ϕ is the characteristic angle of the impedance of the circuit and τ=RL is the time constant of the circuit.</p>
+<p>Note that it is almost intuitive to make this decomposition since the current in a RL circuit is a state variable therefore it must vary continuously. The exponential term is called unidirectional component of the short circuit current and ensures that at time t=0 the current starts exactly from 0. The sinusoidal part is called sinusoidal component, and represents the behaviour of the current after the transient is over (usually about after 4-5 times τ for most engineering applications).</p>
+<p>But you may ask yourself, ok, what are looking for here? The answer is: peak currents. And as you might have already noticed, peak currents depends on the value of α–ϕ part of the formula. Both α and ϕ cannot be predicted, since being able to predict α would mean that you know exactly when the short circuit happens, while knowing ϕ would mean that you know exactly where it happens! Not that easy in theory, impossible in practice. In these cases, worst case scenario is assumed: α–ϕ=π2 .</p>
+<p>If you plug in the parameters for a 132 kV 80 km line, this is the result you get:</p>
+<p><img alt="Short circuit current plot" src="/images/short_circuit_current_plot.png" /></p>
+<p>Note how the sinusoidal wave is skewed at the beginning of the fault. This is the effect of the exponential term in the formula. If you look closely at the maximum value of the current, you will see that it is higher than the pure sinusoidal peak value. The peak current value obtained is about 14 kA and the time constant is about 6.3 ms. Below you can find the script I used and the full output. </p>
+<div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="kn">as</span> <span class="nn">np</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">style</span><span class="o">.</span><span class="n">use</span><span class="p">(</span><span class="s2">&quot;ggplot&quot;</span><span class="p">)</span>
+
+<span class="n">Vn</span> <span class="o">=</span> <span class="mi">132000</span>                             <span class="c1"># Nominal voltage [V]</span>
+<span class="n">E</span> <span class="o">=</span> <span class="n">Vn</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>        <span class="c1"># Peak phase voltage [V]</span>
+<span class="n">l</span> <span class="o">=</span> <span class="mi">80</span>                                  <span class="c1"># Line length [km]</span>
+<span class="n">L</span> <span class="o">=</span> <span class="mf">0.00048</span> <span class="o">*</span> <span class="n">l</span>                         <span class="c1"># Line inductance [H]</span>
+<span class="n">R</span> <span class="o">=</span> <span class="mf">0.0754</span> <span class="o">*</span> <span class="n">l</span>                          <span class="c1"># Line resistance [Ohm]</span>
+<span class="n">F</span> <span class="o">=</span> <span class="mi">50</span>                                  <span class="c1"># Frequency [Hz]</span>
+<span class="n">w</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="n">F</span>                           <span class="c1"># Frequency [rad / s]</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="n">R</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">L</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>            <span class="c1"># Impedance (magnitude) [Ohm]</span>
+<span class="n">tau</span> <span class="o">=</span> <span class="n">L</span><span class="o">/</span><span class="n">R</span>                               <span class="c1"># Time constant [s]</span>
+<span class="n">alpha_phi</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">/</span><span class="mi">2</span>                    <span class="c1"># Alpha - phi [rad]. Use worst case scenario.</span>
+<span class="n">N</span> <span class="o">=</span> <span class="mi">10000</span>                               <span class="c1"># Number of points used</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">8</span><span class="o">*</span><span class="n">tau</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>            <span class="c1"># Time [s]</span>
+
+<span class="c1"># Unidirectional component of short circuit current (a)</span>
+<span class="k">def</span> <span class="nf">unidirectional</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">alpha_phi</span><span class="o">=</span><span class="n">alpha_phi</span><span class="p">,</span> <span class="n">tau</span> <span class="o">=</span> <span class="n">tau</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="o">-</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">E</span><span class="o">/</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="kp">exp</span><span class="p">(</span><span class="o">-</span><span class="n">t</span><span class="o">/</span><span class="n">tau</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="kp">sin</span><span class="p">(</span><span class="n">alpha_phi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="c1"># Sinusoidal component of short circuit current (b)</span>
+<span class="k">def</span> <span class="nf">sinusoidal</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">alpha_phi</span><span class="o">=</span><span class="n">alpha_phi</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="n">E</span><span class="p">,</span> <span class="n">z</span><span class="o">=</span><span class="n">z</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="n">E</span><span class="o">/</span><span class="n">z</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="kp">sin</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">t</span><span class="o">+</span><span class="n">alpha_phi</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="c1"># Short circuit current = a + b</span>
+<span class="k">def</span> <span class="nf">short_cc_current</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">sinusoidal</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">unidirectional</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="c1"># Short circuit current squared</span>
+<span class="k">def</span> <span class="nf">short_cc_current_squared</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+    <span class="n">y</span> <span class="o">=</span> <span class="n">short_cc_current</span><span class="p">(</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span>
+    <span class="k">return</span> <span class="n">y</span>
+
+<span class="c1"># Current RMS</span>
+<span class="n">Icc_rms</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">t</span><span class="p">))</span> <span class="o">*</span> <span class="n">quad</span><span class="p">(</span><span class="n">short_cc_current_squared</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">t</span><span class="p">))[</span><span class="mi">0</span><span class="p">]</span> <span class="p">)</span>
+<span class="c1"># Short circuit current</span>
+<span class="n">Icc</span> <span class="o">=</span> <span class="n">sinusoidal</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">+</span> <span class="n">unidirectional</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="c1"># Print info</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Tau:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">tau</span><span class="o">*</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span> <span class="s2">&quot;ms&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Alpha - phi:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">alpha_phi</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="o">*</span><span class="mi">180</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span><span class="s2">&quot;degree&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Frequency:&quot;</span><span class="p">,</span><span class="n">F</span> <span class="p">,</span><span class="s2">&quot;Hz&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Line reactance:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">w</span><span class="o">*</span><span class="n">L</span><span class="o">/</span><span class="n">l</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span><span class="s2">&quot;Ohm/km&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Line resistance:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">R</span><span class="o">/</span><span class="n">l</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span><span class="s2">&quot;Ohm/km&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Line length:&quot;</span><span class="p">,</span><span class="n">l</span><span class="p">,</span><span class="s2">&quot;km&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Series impedance:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">z</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span><span class="s2">&quot;Ohm&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Impedance characteristic angle:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">arctan</span><span class="p">((</span><span class="n">w</span><span class="o">*</span><span class="n">L</span><span class="p">)</span><span class="o">/</span><span class="n">R</span><span class="p">)</span><span class="o">*</span><span class="mi">180</span><span class="o">/</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;degrees&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Nominal voltage rms:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Vn</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kV&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Phase voltage rms:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">E</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">*</span><span class="mi">1000</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kV&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Peak positive Icc current:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">Icc</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kA&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Peak negative Icc current:&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="kp">min</span><span class="p">(</span><span class="n">Icc</span><span class="p">)</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kA&quot;</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s2">&quot;Icc rms&quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">Icc_rms</span><span class="o">/</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;kA&quot;</span><span class="p">)</span>
+
+<span class="c1"># Plot data</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Icc</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;blue&#39;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;Short circuit current&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">Icc</span><span class="p">)]</span><span class="o">*</span><span class="n">t</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;max&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="kp">min</span><span class="p">(</span><span class="n">Icc</span><span class="p">)]</span><span class="o">*</span><span class="n">t</span><span class="o">.</span><span class="kp">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;red&quot;</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;min&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">unidirectional</span><span class="p">(</span><span class="n">t</span><span class="p">),</span> <span class="n">color</span><span class="o">=</span><span class="s2">&quot;green&quot;</span><span class="p">,</span> <span class="n">label</span> <span class="o">=</span> <span class="s2">&quot;unidirectional comp&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlim</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">t</span><span class="p">)])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylim</span><span class="p">([</span><span class="n">np</span><span class="o">.</span><span class="kp">min</span><span class="p">(</span><span class="n">Icc</span><span class="p">)</span><span class="o">-</span><span class="mi">1000</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="kp">max</span><span class="p">(</span><span class="n">Icc</span><span class="p">)</span> <span class="o">+</span> <span class="mi">8500</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Icc&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;Time [t]&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;Short circuit current [A]&quot;</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1">################################################################################</span>
+<span class="c1">#                           OUTPUT</span>
+<span class="c1">################################################################################</span>
+
+<span class="c1">#Tau: 6.36605 ms</span>
+<span class="c1">#Alpha - phi: -90.0 degree</span>
+<span class="c1">#Frequency: 50 Hz</span>
+<span class="c1">#Line reactance: 0.151 Ohm/km</span>
+<span class="c1">#Line resistance: 0.075 Ohm/km</span>
+<span class="c1">#Line length: 80 km</span>
+<span class="c1">#Series impedance: 13.488 Ohm</span>
+<span class="c1">#Impedance characteristic angle: 63.434 degrees</span>
+<span class="c1">#Nominal voltage rms: 132.0 kV</span>
+<span class="c1">#Phase voltage rms: 76.21 kV</span>
+<span class="c1">#Peak positive Icc current: 13.714 kA</span>
+<span class="c1">#Peak negative Icc current: -11.28 kA</span>
+<span class="c1">#Icc rms 8.158 kA</span>
+</pre></div></div>
+	</div>
+		<footer>
+		  <p>Powered by <a href="http://getpelican.com/">Pelican</a>. Theme based on <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>.</p>
+		  <p>&copy; Michy Alice</p>
+		</footer>
+	  </div>
+
+	</div>
+</body>
+</html>
