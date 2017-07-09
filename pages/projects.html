@@ -118,6 +118,24 @@ Some of the the topics include:</p>
 <li>Transistors (BJT) as amplifiers.</li>
 <li>Transistors (BJT) as switches.</li>
 </ol>
+<h5>IV &amp; CV automated curve tracer application</h5>
+<p>I'm currently testing a IV &amp; CV automated curve tracer application in LabVIEW.</p>
+<p>The application is currently under final testing and I'm writing the user's manual. The application has the following features:</p>
+<ul>
+<li>Trace IV or CV characteristics of a 2, 3, 4, 5 terminal electrical/electronic component.</li>
+<li>Independent and dependent bias voltage settings (the second bias can be set as a function of the first one).</li>
+<li>The main voltage source and the bias source(s) can be chosen among 5 different instruments (Yokogawa 7651, Keithley 6487, Keithley 6430, TTI QL-355TP and ISEG NHQ223M.</li>
+<li>Yokogawa 7651 and Keithley 6430 can also be used as current sources.</li>
+<li>Up to 4 simultaneous current and up to 2 voltage measurements using Keithley 6485, Keithley 6487, Keithley 6430 and Agilent 34970A.</li>
+<li>CV measurements are performed using Agilent 4263B. The parameters measured by default are Cp and delta, however other parameters can be measured too.</li>
+<li>Main functions/settings of the instruments can be set by remote (current/voltage compliance, digital filters, math, integration time, etc...)</li>
+<li>External average function with a number of points specified by the user.</li>
+<li>Measurement report in html format with graphs of the measurements.</li>
+<li>Save/Load measurement configuration.</li>
+<li>Measurement data can be loaded back into the application and reviewed at a later stage.</li>
+</ul>
+<p>As of now, I've tested the application diodes, N-FETs, ceramic capacitors and NPN transistors. Some testing was also done on high value resistors (giga and tera ohms resistors) to test the current measuring capabilities of the Keithley 6430 Sub-Femtoamp Remote SourceMeter.</p>
+<p>I plan on making a webpage with some details of the development and test results soon.</p>
 <hr />
 <h3>Electrical Engineering projects</h3>
 <h5><a href="https://github.com/michy-alice/michy-alice.github.io/blob/master/impianto_BT_MT.zip">Low and medium voltage electrical distribution lines design</a></h5>
@@ -131,7 +149,7 @@ You can find the complete report, calculations and datasheets <a href="https://g
 <h5>"Balancing a ball on a beam"</h5>
 <p>Another classical control problem solved using a controller of the PID family. This project helped me in getting some "hands on" practical engineering and control theory from design to physical implementation of the model. I am currently writing a report of the project and I plan to release it as soon as I finish it.</p>
 <hr />
-<h3>Other side projects</h3>
+<h3>Other "side projects"</h3>
 <h5><a href="https://mick001.github.io/ArduinoCommClass/">ArduinoCommClass</a></h5>
 <p>This is a programm written in Python used for exchanging data with your Arduino Uno board. It could probably used with other Arduino boards as long as they support serial port communication with your laptop but since I own just the Uno, I tested that particular board only. If you click on the project, you can find some example of application such as the <a href="http://firsttimeprogrammer.blogspot.com/2015/08/using-arduino-to-measure-friction.html">estimation of the friction coefficient</a> of a particular surface.</p>
 <h5><a href="https://mick001.github.io/control_charts_shiny/">Control charts Shiny App</a></h5>
