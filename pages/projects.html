@@ -96,11 +96,11 @@
 <li>Support management in analysing yearly reports.</li>
 <li>Attending, both as exhibitor and visitor, international lighting and energy fairs.  </li>
 </ol>
-<hr />
+<hr>
 <h3>Personal projects</h3>
 <h5>The Beginner Programmer.</h5>
 <p>My personal blog <a href="http://firsttimeprogrammer.blogspot.com">The Beginner Programmer</a> is a collection of experiments and applications of my knowledge of machine learning, programming and engineering. Whenever I read about something and find it interesting I may write some code about it and then turn it into a short article. The Beginner Programmer is listed on <a href="http://www.r-bloggers.com/">Rbloggers</a> and is a regular contributor of posts to the R community. You can find the relevant posts of The Beginner Programmer listed on <a href="http://www.r-bloggers.com/">Rbloggers</a> at <a href="http://www.r-bloggers.com/author/mic/">this page</a>, <a href="http://planetpython.org/">Planet Python</a> and <a href="http://www.statsblogs.com/">StatsBlogs</a>.</p>
-<hr />
+<hr>
 <h3>Academic work</h3>
 <h5><a href="http://www.grin.com/it/e-book/283567/una-introduzione-alla-teoria-delle-copule">Thesis: "An introduction to copula theory"</a></h5>
 <p>As of now, only italian version is available). Available as an online reading for free at <a href="http://www.grin.com/it/e-book/283567/una-introduzione-alla-teoria-delle-copule">Grin</a> or as a payed pdf or printed book copy.
@@ -118,26 +118,29 @@ Some of the the topics include:</p>
 <li>Transistors (BJT) as amplifiers.</li>
 <li>Transistors (BJT) as switches.</li>
 </ol>
-<h5>IV &amp; CV automated curve tracer application</h5>
-<p>I'm currently testing a IV &amp; CV automated curve tracer application in LabVIEW.</p>
-<p>The application is currently under final testing and I'm writing the user's manual. The application has the following features:</p>
-<ul>
-<li>Trace IV or CV characteristics of a 2, 3, 4, 5 terminal electrical/electronic component.</li>
-<li>Independent and dependent bias voltage settings (the second bias can be set as a function of the first one).</li>
-<li>The main voltage source and the bias source(s) can be chosen among 5 different instruments (Yokogawa 7651, Keithley 6487, Keithley 6430, TTI QL-355TP and ISEG NHQ223M.</li>
-<li>Yokogawa 7651 and Keithley 6430 can also be used as current sources.</li>
-<li>Up to 4 simultaneous current and up to 2 voltage measurements using Keithley 6485, Keithley 6487, Keithley 6430 and Agilent 34970A.</li>
-<li>CV measurements are performed using Agilent 4263B. The parameters measured by default are Cp and delta, however other parameters can be measured too.</li>
-<li>Main functions/settings of the instruments can be set by remote (current/voltage compliance, digital filters, math, integration time, etc...)</li>
-<li>External average function with a number of points specified by the user.</li>
-<li>Measurement report in html format with graphs of the measurements.</li>
-<li>Save/Load measurement configuration.</li>
-<li>Measurement data can be loaded back into the application and reviewed at a later stage.</li>
-</ul>
-<p>As of now, I've tested the application diodes, N-FETs, ceramic capacitors and NPN transistors. Some testing was also done on high value resistors (giga and tera ohms resistors) to test the current measuring capabilities of the Keithley 6430 Sub-Femtoamp Remote SourceMeter.</p>
-<p>I plan on making a webpage with some details of the development and test results soon.</p>
-<hr />
+<hr>
 <h3>Electrical Engineering projects</h3>
+<h5>IV &amp; CV automated curve tracer LabVIEW application</h5>
+<p>Development and testing of an IV &amp; CV automated curve tracer application in LabVIEW.</p>
+<p>The application has the following features:
+- Trace IV or CV (single and multiple) characteristics of electrical/electronic component.
+- Independent and dependent bias voltage sources (the second bias can be set as a function of the first one).
+- The main voltage source and the bias source(s) can be chosen among 6 different instruments (Yokogawa 7651, Keithley 6487, Keithley 6430, TTI QL-355TP, ISEG NHQ223M and CAEN DT5470P.
+- Yokogawa 7651 can also be used as a constant current source.
+- Up to 4 simultaneous current measurements and up to 2 simultaneous voltage measurements using Keithley 6485, Keithley 6487, Keithley 6430 and Agilent 34970A.
+- Capacity measurements are performed using Agilent 4263B. The parameters measured by default are Cp (equivalent parallel capacitance) and delta, however other parameters can be measured too.
+- Main functions/settings of the instruments can be set by remote (current/voltage compliance, digital filters, math, integration time, etc...).
+- External average function with a number of points specified by the user.
+- Measurements report in html format with a graph for each measured quantity.
+- Save/Load measurement configuration.
+- Measurement data can be loaded back into the application, printed and reviewed at a later stage.
+- Online operational help guide (available at https://goo.gl/FH7cPy and still under development).
+- Detailed instruction manual in pdf.</p>
+<p>The application has been tested as follows:
+- Tracing of IV characteristics of diodes, N-JFETs and NPN transistors. Some testing was also done on high value resistors (&gt; 100 MOhm) in order to test the current measuring capabilities of the Keithley 6430 Sub-Femtoamp Remote SourceMeter.
+- Tracing of CV characteristics of different kind of capacitors (ceramic and polyester) and tracing of the Cgs Vgs curve as Vds changes for the BF862 and 2N4416 N-JFET.</p>
+<p>During the development of the application, the LabVIEW drivers of <a href="http://sine.ni.com/apps/utf8/niid_web_display.model_page?p_model_id=1867">Keithley 6487</a> and <a href="http://sine.ni.com/apps/utf8/niid_web_display.model_page?p_model_id=3802">Agilent 4263B</a> available on the <a href="http://www.ni.com/downloads/instrument-drivers/i/">Instrument Driver Network</a> were edited by correcting some small mistakes and by implementing the use of some features of the instruments which were not available originally.</p>
+<p>Detailed examples of measurements are available at: <a href="https://goo.gl/FH7cPy">https://goo.gl/FH7cPy</a>.</p>
 <h5><a href="https://github.com/michy-alice/michy-alice.github.io/blob/master/impianto_BT_MT.zip">Low and medium voltage electrical distribution lines design</a></h5>
 <p>This project was part of an assignment we were given during the third year. The project aims at designing: 5 low voltage transmission lines (230-400V), a medium voltage line (20kV), a power factor correction system, safety circuit breakers and switches, and distribution transfomer. </p>
 <p>The project has been completed according to the 2016 italian regulatory framework for electrical power distribution.
@@ -148,7 +151,7 @@ You can find the complete report, calculations and datasheets <a href="https://g
 <p>As a classical control problem, the aim of this project is to design a stable circuit that enables the user to set the speed of rotation of the DC motor. By setting a fixed voltage as input proportional to the desired angular speed, the control system made of a PI controller speeds the rotor up to the desired speed.   </p>
 <h5>"Balancing a ball on a beam"</h5>
 <p>Another classical control problem solved using a controller of the PID family. This project helped me in getting some "hands on" practical engineering and control theory from design to physical implementation of the model. I am currently writing a report of the project and I plan to release it as soon as I finish it.</p>
-<hr />
+<hr>
 <h3>Other "side projects"</h3>
 <h5><a href="https://mick001.github.io/ArduinoCommClass/">ArduinoCommClass</a></h5>
 <p>This is a programm written in Python used for exchanging data with your Arduino Uno board. It could probably used with other Arduino boards as long as they support serial port communication with your laptop but since I own just the Uno, I tested that particular board only. If you click on the project, you can find some example of application such as the <a href="http://firsttimeprogrammer.blogspot.com/2015/08/using-arduino-to-measure-friction.html">estimation of the friction coefficient</a> of a particular surface.</p>

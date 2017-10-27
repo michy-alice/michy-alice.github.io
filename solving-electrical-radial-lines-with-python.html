@@ -73,7 +73,7 @@ tags: <a href="/tag/electrical-engineering.html">Electrical Engineering</a> <a h
 <p>Low voltage lines and most of medium voltage lines are radial lines, that is they are like a branch of a tree with a unique power supply location. Radial lines are relatively easy to work with, you can solve a radial line problem (ie you can get currents and voltages) by applying Boucherot’s theorem to each section of the line. This is a good news for a Python enthusiast as myself, since repetitive tasks lends themselves to be automated with programming.</p>
 <p>Since Boucherot’s theorem uses the absolute values of electrical quantities, it is useful when you are working with AC lines and you would like to know the magnitude (rms) of currents and voltages while at the same time you do not really care about the phase differences. The rms values are used, for instance, when you need to choose the protection systems to install and what kind of electrical wires to use.</p>
 <p>Suppose you are given the following three phase balanced radial line:</p>
-<p><img alt="Radial electrical line" src="/images/line.png" /></p>
+<p><img alt="Radial electrical line" src="/images/line.png"></p>
 <p>You can think of C1, C2 and C3 as industrial motors or any other kind of three phased balanced loads.</p>
 <p>We can make the following assumptions:
 - The system is 3 phase, symmetrical and balanced.
@@ -87,7 +87,7 @@ tags: <a href="/tag/electrical-engineering.html">Electrical Engineering</a> <a h
 2) The transformer class models a real transformer.
 3) The transmission line class models a typical short power line.</p>
 <p>Once the classes have been written, a few lines are required for solving the problem. The results are shown in the plot below.</p>
-<p><img alt="Output plot" src="/images/vplot.png" /></p>
+<p><img alt="Output plot" src="/images/vplot.png"></p>
 <p>As expected the results show a voltage drop across all sections (typical for RL loads) and, lower current on the primary side of the transformer. This is to be expected due to the voltage/current relationship of the transformer. As a next step, we could proceed to choose the appropriate security sistems to install at the beginning of each line and the electrical wires. Maybe this could be the next step in this project.</p>
 <p>The code I used is shown below. I tried to make it as modular as possible so that it could be applied to almost every radial line. You can add as many loads, transformers and transmission lines as you like and then compute the values for each section. Originally this is how I checked my assignments but I thought it could be an interesting mini-project to share. I feel like the code is pretty self explanatory but feel free to leave a comment if you are not sure on what the code is doing!</p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>

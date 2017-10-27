@@ -70,7 +70,7 @@ by <a class="url fn" href="/author/michy-alice.html">Michy Alice </a>
  in <a href="/category/posts.html">Posts</a>
 tags: <a href="/tag/electrical-engineering.html">Electrical Engineering</a> <a href="/tag/python.html">Python</a> </div>
 		<div><p>Short circuits are one of the most common failures that can happen when dealing with electrical circuits. </p>
-<p><img alt="High voltage" src="/images/high_voltage.png" /></p>
+<p><img alt="High voltage" src="/images/high_voltage.png"></p>
 <p>Short circuits can be accidental, think of a tree branch leaning onto a high voltage powerline or due to the breakdown of the isolating material (this is often the case as it gets older and loses its isolating property). Whatever the cause, short circuits are, for sure, an enemy of your electrical systems mainly because the following effects:</p>
 <p>1) Much higher heat conversion due to the Joule effect in the power lines. If this effect lasts long enough, it can severely shorten the lifespan of the electrical cables.
 2) Higher electrodynamic forces (roughly, proportional to the peak of the current squared).</p>
@@ -80,7 +80,7 @@ tags: <a href="/tag/electrical-engineering.html">Electrical Engineering</a> <a h
 2) The line capacitance can be neglected and the whole system can be modelled as a RL circuit.
 3) Even under a short circuit, the system is balanced and symmetrical (this is not true usually).</p>
 <p>Under these simple assumptions, the power line’s concentrated parameter circuit (single phase equivalent) becomes the following:</p>
-<p><img alt="RL circuit" src="/images/RL_circuit.png" /></p>
+<p><img alt="RL circuit" src="/images/RL_circuit.png"></p>
 <p>The short circuit current can be divided in two parts as follows:</p>
 <div class="highlight"><pre>icc = (Vm/Z) sin(ωt+α−ϕ) − (Vm/Z) exp(−t/τ) sin(α−ϕ)
 </pre></div>
@@ -90,7 +90,7 @@ tags: <a href="/tag/electrical-engineering.html">Electrical Engineering</a> <a h
 <p>Note that it is almost intuitive to make this decomposition since the current in a RL circuit is a state variable therefore it must vary continuously. The exponential term is called unidirectional component of the short circuit current and ensures that at time t=0 the current starts exactly from 0. The sinusoidal part is called sinusoidal component, and represents the behaviour of the current after the transient is over (usually about after 4-5 times τ for most engineering applications).</p>
 <p>But you may ask yourself, ok, what are looking for here? The answer is: peak currents. And as you might have already noticed, peak currents depends on the value of α–ϕ part of the formula. Both α and ϕ cannot be predicted, since being able to predict α would mean that you know exactly when the short circuit happens, while knowing ϕ would mean that you know exactly where it happens! Not that easy in theory, impossible in practice. In these cases, worst case scenario is assumed: α–ϕ=π2 .</p>
 <p>If you plug in the parameters for a 132 kV 80 km line, this is the result you get:</p>
-<p><img alt="Short circuit current plot" src="/images/short_circuit_current_plot.png" /></p>
+<p><img alt="Short circuit current plot" src="/images/short_circuit_current_plot.png"></p>
 <p>Note how the sinusoidal wave is skewed at the beginning of the fault. This is the effect of the exponential term in the formula. If you look closely at the maximum value of the current, you will see that it is higher than the pure sinusoidal peak value. The peak current value obtained is about 14 kA and the time constant is about 6.3 ms. Below you can find the script I used and the full output. </p>
 <div class="highlight"><pre><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="kn">as</span> <span class="nn">plt</span>
 <span class="kn">from</span> <span class="nn">scipy.integrate</span> <span class="kn">import</span> <span class="n">quad</span>
