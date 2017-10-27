@@ -122,23 +122,27 @@ Some of the the topics include:</p>
 <h3>Electrical Engineering projects</h3>
 <h5>IV &amp; CV automated curve tracer LabVIEW application</h5>
 <p>Development and testing of an IV &amp; CV automated curve tracer application in LabVIEW.</p>
-<p>The application has the following features:
-- Trace IV or CV (single and multiple) characteristics of electrical/electronic component.
-- Independent and dependent bias voltage sources (the second bias can be set as a function of the first one).
-- The main voltage source and the bias source(s) can be chosen among 6 different instruments (Yokogawa 7651, Keithley 6487, Keithley 6430, TTI QL-355TP, ISEG NHQ223M and CAEN DT5470P.
-- Yokogawa 7651 can also be used as a constant current source.
-- Up to 4 simultaneous current measurements and up to 2 simultaneous voltage measurements using Keithley 6485, Keithley 6487, Keithley 6430 and Agilent 34970A.
-- Capacity measurements are performed using Agilent 4263B. The parameters measured by default are Cp (equivalent parallel capacitance) and delta, however other parameters can be measured too.
-- Main functions/settings of the instruments can be set by remote (current/voltage compliance, digital filters, math, integration time, etc...).
-- External average function with a number of points specified by the user.
-- Measurements report in html format with a graph for each measured quantity.
-- Save/Load measurement configuration.
-- Measurement data can be loaded back into the application, printed and reviewed at a later stage.
-- Online operational help guide (available at https://goo.gl/FH7cPy and still under development).
-- Detailed instruction manual in pdf.</p>
-<p>The application has been tested as follows:
-- Tracing of IV characteristics of diodes, N-JFETs and NPN transistors. Some testing was also done on high value resistors (&gt; 100 MOhm) in order to test the current measuring capabilities of the Keithley 6430 Sub-Femtoamp Remote SourceMeter.
-- Tracing of CV characteristics of different kind of capacitors (ceramic and polyester) and tracing of the Cgs Vgs curve as Vds changes for the BF862 and 2N4416 N-JFET.</p>
+<p>The application has the following features:</p>
+<ul>
+<li>Trace IV or CV (single and multiple) characteristics of electrical/electronic component.</li>
+<li>Independent and dependent bias voltage sources (the second bias can be set as a function of the first one).</li>
+<li>The main voltage source and the bias source(s) can be chosen among 6 different instruments (Yokogawa 7651, Keithley 6487, Keithley 6430, TTI QL-355TP, ISEG NHQ223M and CAEN DT5470P.</li>
+<li>Yokogawa 7651 can also be used as a constant current source.</li>
+<li>Up to 4 simultaneous current measurements and up to 2 simultaneous voltage measurements using Keithley 6485, Keithley 6487, Keithley 6430 and Agilent 34970A.</li>
+<li>Capacity measurements are performed using Agilent 4263B. The parameters measured by default are Cp (equivalent parallel capacitance) and delta, however other parameters can be measured too.</li>
+<li>Main functions/settings of the instruments can be set by remote (current/voltage compliance, digital filters, math, integration time, etc...).</li>
+<li>External average function with a number of points specified by the user.</li>
+<li>Measurements report in html format with a graph for each measured quantity.</li>
+<li>Save/Load measurement configuration.</li>
+<li>Measurement data can be loaded back into the application, printed and reviewed at a later stage.</li>
+<li>Online operational help guide (available at https://goo.gl/FH7cPy and still under development).</li>
+<li>Detailed instruction manual in pdf.</li>
+</ul>
+<p>The application has been tested as follows:</p>
+<ul>
+<li>Tracing of IV characteristics of diodes, N-JFETs and NPN transistors. Some testing was also done on high value resistors (&gt; 100 MOhm) in order to test the current measuring capabilities of the Keithley 6430 Sub-Femtoamp Remote SourceMeter.</li>
+<li>Tracing of CV characteristics of different kind of capacitors (ceramic and polyester) and tracing of the Cgs Vgs curve as Vds changes for the BF862 and 2N4416 N-JFET.</li>
+</ul>
 <p>During the development of the application, the LabVIEW drivers of <a href="http://sine.ni.com/apps/utf8/niid_web_display.model_page?p_model_id=1867">Keithley 6487</a> and <a href="http://sine.ni.com/apps/utf8/niid_web_display.model_page?p_model_id=3802">Agilent 4263B</a> available on the <a href="http://www.ni.com/downloads/instrument-drivers/i/">Instrument Driver Network</a> were edited by correcting some small mistakes and by implementing the use of some features of the instruments which were not available originally.</p>
 <p>Detailed examples of measurements are available at: <a href="https://goo.gl/FH7cPy">https://goo.gl/FH7cPy</a>.</p>
 <h5><a href="https://github.com/michy-alice/michy-alice.github.io/blob/master/impianto_BT_MT.zip">Low and medium voltage electrical distribution lines design</a></h5>
